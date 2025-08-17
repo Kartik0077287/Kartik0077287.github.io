@@ -1,298 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartik | Game Developer Portfolio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(120deg, #1d1f21, #2b2d42);
-            color: white;
-            scroll-behavior: smooth;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Side Navigation */
-        nav {
-            position: fixed;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
-        }
-        nav a {
-            background: rgba(255,255,255,0.1);
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #ffcc70;
-            font-weight: bold;
-            transition: 0.3s;
-            text-align: center;
-        }
-        nav a:hover {
-            background: #ff6f61;
-            color: black;
-        }
-
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            background: #ff6f61;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            z-index: 1100;
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            nav {
-                position: fixed;
-                top: 60px;
-                left: -200px;
-                flex-direction: column;
-                background: rgba(0,0,0,0.8);
-                padding: 20px;
-                border-radius: 0 10px 10px 0;
-                transition: left 0.3s ease-in-out;
-            }
-            nav.active {
-                left: 0;
-            }
-            .menu-toggle {
-                display: block;
-            }
-        }
-
-        /* Sections */
-        header {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(120deg, #ff6f61, #ffcc70);
-            color: black;
-            animation: fadeIn 1.2s ease-out;
-        }
-        header h1 {
-            font-size: 3em;
-            margin: 0;
-        }
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-        header a {
-            background: black;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        header a:hover {
-            background: white;
-            color: black;
-        }
-        section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: auto;
-            animation: fadeInUp 1s ease-out;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #ffcc70;
-        }
-
-        /* Skills & Projects */
-        .skills, .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease-out;
-        }
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
-        }
-
-        /* Project Media */
-        .project-media {
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-        /* Contact */
-        .contact {
-            text-align: center;
-        }
-        .contact a {
-            display: inline-block;
-            margin: 10px;
-            color: #ffcc70;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .contact a:hover {
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-            background: rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kartik | Game Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Mobile Menu Button -->
-<button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+<canvas id="particles"></canvas>
 
-<!-- Side Navigation -->
-<nav id="sideNav">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<header>
-    <h1>Kartik Bhalla</h1>
-    <p>Unity 3D Game Developer | C# Programmer | Creative Game Designer</p>
-    <a href="#projects">View My Work</a>
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="parallax" aria-hidden="true"></div>
+  <div class="container">
+    <h1 class="hero-title">KARTIK</h1>
+    <div class="subtitle" id="typewriter" data-lines='["Game Developer · Unity 3D · C#","UI · Animation · SFX · VFX","Bug Testing · Prototyping"]'></div>
+    <a class="cta" href="#about">Press Start ⮕</a>
+  </div>
 </header>
 
-<section id="about">
-    <h2>About Me</h2>
-    <p style="text-align:center; max-width:800px; margin:auto;">
-        Hi, I’m Kartik — a passionate game developer specializing in Unity 3D using C#. 
-        I create interactive experiences with sound, effects, animations, UI, and bug testing.  
-        My goal is to make games that are both fun and visually engaging.
-    </p>
-</section>
-
-<section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-        <div class="card">Unity 3D Development</div>
-        <div class="card">C# Programming</div>
-        <div class="card">Basic Sound Design</div>
-        <div class="card">Special Effects</div>
-        <div class="card">Animation</div>
-        <div class="card">UI Design</div>
-        <div class="card">Basic Bug Testing</div>
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="reveal">
+  <div class="container about">
+    <div class="card">
+      <h2 class="section-title">Mission Briefing</h2>
+      <p>Unity 3D developer focused on C# gameplay, UI flows, animation, SFX, and hands-on bug fixing. I enjoy building tight-feel controllers, satisfying VFX, and clean interfaces that make games <em>feel</em> right.</p>
+      <div class="badges">
+        <span class="badge">Unity 3D</span>
+        <span class="badge">C#</span>
+        <span class="badge">UI & UX</span>
+        <span class="badge">Animation</span>
+        <span class="badge">SFX & VFX</span>
+        <span class="badge">Bug Testing</span>
+      </div>
     </div>
-</section>
-
-<section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-        <div class="card">
-            <h3>Project 1</h3>
-            <p>Unity scene setup and basic movement of player.</p>
-<!--             <img src="your-image1.jpg" alt="Project Screenshot" class="project-media"> -->
-            <video controls class="project-media">
-                <source src="project1.mp4" type="video/mp4">
-            </video>
+    <div class="card">
+      <h2 class="section-title">Player Stats</h2>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-head"><span>Unity 3D</span><span>90%</span></div>
+          <div class="bar"><div class="fill" data-fill="90"></div></div>
         </div>
-        <div class="card">
-            <h3>Challenge 1</h3>
-            <p>Debugging the game and scripts</p>
-<!--             <img src="your-image1.jpg" alt="Project Screenshot" class="project-media"> -->
-            <video controls class="project-media">
-                <source src="Challenge 1.mp4" type="video/mp4">
-            </video>
+        <div class="skill">
+          <div class="skill-head"><span>C#</span><span>85%</span></div>
+          <div class="bar"><div class="fill" data-fill="85"></div></div>
         </div>
-        <div class="card">
-            <h3>Project 2</h3>
-            <p>A Unity 3D game with immersive sound and smooth animations.  
-            (Replace this with your own description)</p>
-<!--             <img src="your-image1.jpg" alt="Project Screenshot" class="project-media"> -->
-            <video controls class="project-media">
-                <source src="Project 2.mp4" type="video/mp4">
-            </video>
+        <div class="skill">
+          <div class="skill-head"><span>Animation</span><span>80%</span></div>
+          <div class="bar"><div class="fill" data-fill="80"></div></div>
         </div>
-        <div class="card">
-            <h3>Challenge 2</h3>
-            <p>A Unity 3D game with immersive sound and smooth animations.  
-            (Replace this with your own description)</p>
-<!--             <img src="your-image1.jpg" alt="Project Screenshot" class="project-media"> -->
-            <video controls class="project-media">
-                <source src="Challenge 2.mp4" type="video/mp4">
-            </video>
+        <div class="skill">
+          <div class="skill-head"><span>UI Design</span><span>78%</span></div>
+          <div class="bar"><div class="fill" data-fill="78"></div></div>
         </div>
-<!--         <div class="card">
-            <h3>Project 5</h3>
-            <p>A Unity 3D game with immersive sound and smooth animations.  
-            (Replace this with your own description)</p>
-            <img src="your-image1.jpg" alt="Project Screenshot" class="project-media">
-            <video controls class="project-media">
-                <source src="project5.mp4" type="video/mp4">
-            </video>
-        </div> -->
-<!--         <div class="card">
-            <h3>Project 2</h3>
-            <p>An interactive environment created with C# scripting and visual effects.  
-            (Replace this with your own description)</p>
-            <img src="your-image2.jpg" alt="Project Screenshot" class="project-media">
-        </div> -->
+        <div class="skill">
+          <div class="skill-head"><span>Sound/VFX</span><span>75%</span></div>
+          <div class="bar"><div class="fill" data-fill="75"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>Bug Testing</span><span>70%</span></div>
+          <div class="bar"><div class="fill" data-fill="70"></div></div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="contact">
-        <a href="athersverse@gmail.com">📧 Email</a>
-        <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a>
-        <a href="https://www.linkedin.com/in/kartik-bhalla-game-dev/" target="_blank">🔗 LinkedIn</a>
+<hr class="sep">
+
+<!-- ===================== NAV TO SUBPAGES ===================== -->
+<section id="levels" class="reveal">
+  <div class="container">
+    <h2 class="section-title">Level Select</h2>
+    <div class="grid">
+      <a href="projects.html" class="project tilt link-card">
+        <div class="thumb">
+          <img src="assets/images/projects-thumb.jpg" alt="Projects">
+        </div>
+        <h3>Projects</h3>
+        <p>Main game projects with Unity Play demos.</p>
+      </a>
+
+      <a href="prototypes.html" class="project tilt link-card">
+        <div class="thumb">
+          <img src="assets/images/prototypes-thumb.jpg" alt="Prototypes">
+        </div>
+        <h3>Prototypes</h3>
+        <p>Learning experiments & mini builds.</p>
+      </a>
+
+      <a href="challenges.html" class="project tilt link-card">
+        <div class="thumb">
+          <img src="assets/images/challenges-thumb.jpg" alt="Challenges">
+        </div>
+        <h3>Challenges</h3>
+        <p>Debugging & problem-solving exercises.</p>
+      </a>
     </div>
+  </div>
 </section>
 
-<footer>
-    © 2025 Kartik Bhalla | Game Developer Portfolio
-</footer>
+<hr class="sep">
 
-<script>
-    function toggleMenu() {
-        document.getElementById("sideNav").classList.toggle("active");
-    }
-</script>
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="reveal">
+  <div class="container contact">
+    <div class="card">
+      <h2 class="section-title">Thanks for Playing</h2>
+      <p>Open to collabs, junior roles, and prototypes.</p>
+      <div class="contact-links">
+        <a class="btn" href="mailto:athersverse@gmail.com">📧 Click to Email</a>
+        <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noreferrer">💻 GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/kartik-bhalla-game-dev/" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<footer>© 2025 Kartik Bhalla</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
